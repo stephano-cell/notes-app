@@ -1,5 +1,8 @@
+//get note.id from location hash
 const noteId = location.hash.substring(1)
 const notes = getSavedNotes()
+
+//call note by id
 const note=notes.find(function(note){
     return note.id===noteId
 })  
