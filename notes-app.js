@@ -34,14 +34,14 @@ document.getElementById('create-note').addEventListener('click',function(e){
 
   
 })
-document.querySelector('#filter-by').addEventListener('change',function(e){
+document.querySelector('#filter-by').addEventListener('change',(e)=>{
    filters.sortBy=e.target.value
    renderNotes(notes,filters)
    console.log(e.target.value)
 })
 
 //auto update in each tab when title, body changes
-window.addEventListener('storage',function(e){
+window.addEventListener('storage',(e)=>{
    
     if (e.key==='notes'){
     notes=JSON.parse(e.newValue)

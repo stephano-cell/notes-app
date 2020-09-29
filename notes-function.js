@@ -17,9 +17,7 @@ const savedNotes=function(notes){localStorage.setItem('notes', JSON.stringify(no
 
 //remove note from list
 const removeNote=function(id){
-    const noteIndex=notes.findIndex(function(note){
-        return note.id===id
-    })
+    const noteIndex=notes.findIndex((note)=>note.id===id)
     if(noteIndex>-1){
         notes.splice(noteIndex,1)
     }
@@ -37,7 +35,7 @@ const button= document.createElement('button')
 //setup the remove note button before not
 button.textContent='X'
 noteEl.appendChild(button)
-button.addEventListener('click',function(){
+button.addEventListener('click',()=>{
     removeNote(note.id)
     savedNotes(notes)
     renderNotes(notes,filters)
@@ -106,7 +104,7 @@ button.addEventListener('click',function(){
 const renderNotes=function(notes,filters){
     //call sort notes function
     notes=sortNotes(notes,filters.sortBy)
-    const filteredNotes= notes.filter(function(note){
+    const filteredNotes= notes.filter((note)=>{
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
     })
     document.querySelector('div#notes').innerHTML=''
