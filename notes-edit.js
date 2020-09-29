@@ -10,6 +10,9 @@ let note=notes.find(function(note){
 if (note===undefined){
     location.assign('/index.html')
 }
+document.querySelector('#last-edited').textContent='Last edited '+moment(note.updatedAt).fromNow()
+
+
 //set values from getSaved notes for title and body
 document.querySelector('#note-title').value=note.title
 document.querySelector('#note-body').value=note.body
@@ -18,12 +21,19 @@ document.querySelector('#note-body').value=note.body
 //update note.title when user change value in iput
 document.querySelector('#note-title').addEventListener('input',function(e){
    note.title=e.target.value
+   note.updatedAt=moment().valueOf()
+   //span to show time ago of updated
+   document.querySelector('#last-edited').textContent='Last edited '+moment(note.updatedAt).fromNow()
     savedNotes(notes)
 })
 
 //update note.body when user changes value from form
 document.querySelector('#note-body').addEventListener('input',function(e){
     note.body=e.target.value
+    note.updatedAt=moment().valueOf()
+       //span to show time ago of updated
+    document.querySelector('#last-edited').textContent='Last edited: '+moment(note.updatedAt).fromNow()
+
     savedNotes(notes)
 })
 
@@ -40,12 +50,18 @@ window.addEventListener('storage',function(e){
        notes=JSON.parse(e.newValue)
        let note=notes.find(function(note){
         return note.id===noteId
+        
     })  
     if (note===undefined){
         location.assign('/index.html')
     }
+
     //set values from getSaved notes for title and body
     document.querySelector('#note-title').value=note.title
     document.querySelector('#note-body').value=note.body
+
 }   
 })
+
+
+

@@ -73,5 +73,5 @@ const renderNotes=function(notes,filters){
         document.querySelector('div#notes').appendChild(noteEl);
        
     })
-  
+
 }

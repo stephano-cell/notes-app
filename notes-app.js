@@ -12,12 +12,16 @@ renderNotes(notes,filters)
 
 document.getElementById('create-note').addEventListener('click',function(e){
     const id=uuidv4()
+    //time stamp Unix time number
+    const timestamp=moment().valueOf()
  notes.push({
      //unique identifier
      id:id,
      //----
      title:'',
-     body:''
+     body:'',
+     createdAt:timestamp,
+     updatedAt:timestamp
  })
 
  savedNotes(notes)
@@ -42,40 +46,6 @@ window.addEventListener('storage',function(e){
     }
 })
 
-// 1. Setup link href to include hash with id
-// 2. Setup the assign call to include hash with id
-
-// //DOM - Document Object Model
-
-// //query and remove
-// // const p=document.querySelector('h1')
-// // console.log(p)
-
-// //query all and remove
-// const ps=document.querySelectorAll('p')
-// ps.forEach((item)=>{
-    
-//     item.textContent='******'
-
-//    //console.log( item.textContent)
-    
-//     //item.remove()
-// })
-
-// // Add a new element
-//  const newParagraph=document.createElement('p')
-//  newParagraph.textContent='This is a new element from JavaScript'
-//  document.querySelector('body').appendChild(newParagraph)
-
-
-
-// -- Single--
-//p
-//#replace
-// .item
-
-//-- Multiple --
-//p#order
-//button.inventory
-//h1#title.application
-//h1.application#title
+// 1. Add createdAt and updatedAt to the new notes (store timestamp)
+// 2. Update updatedAt when someone edits a title or body
+// 3. Delete all old notes before testing
