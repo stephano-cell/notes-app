@@ -1,6 +1,7 @@
 let notes = getSavedNotes()
 const filters={
-    searchText:''
+    searchText:'',
+    sortBy:'byEdited'
 }
 //render notes input
 document.querySelector('input#search-text').addEventListener('input',function(e){
@@ -34,7 +35,9 @@ document.getElementById('create-note').addEventListener('click',function(e){
   
 })
 document.querySelector('#filter-by').addEventListener('change',function(e){
-    console.log(e.target.value)
+   filters.sortBy=e.target.value
+   renderNotes(notes,filters)
+   console.log(e.target.value)
 })
 
 //auto update in each tab when title, body changes
