@@ -1,9 +1,9 @@
 //get note.id from location hash
 const noteId = location.hash.substring(1)
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
 //call note by id
-const note=notes.find(function(note){
+let note=notes.find(function(note){
     return note.id===noteId
 })  
 
@@ -33,4 +33,19 @@ document.querySelector('#remove-note').addEventListener('click',function(){
    savedNotes(notes)
    location.assign('/index.html')
    
+})
+//auto update in each tab when title, body changes
+window.addEventListener('storage',function(e){
+       if (e.key==='notes'){
+       notes=JSON.parse(e.newValue)
+       let note=notes.find(function(note){
+        return note.id===noteId
+    })  
+    if (note===undefined){
+        location.assign('/index.html')
+    }
+    //set values from getSaved notes for title and body
+    document.querySelector('#note-title').value=note.title
+    document.querySelector('#note-body').value=note.body
+}   
 })
