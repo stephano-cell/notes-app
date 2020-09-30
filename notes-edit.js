@@ -5,7 +5,7 @@ let notes = getSavedNotes()
 //call note by id
 let note=notes.find((note)=> note.id===noteId)  
 
-if (note===undefined){
+if (!note){
     location.assign('/index.html')
 }
 document.querySelector('#last-edited').textContent='Last edited '+moment(note.updatedAt).fromNow()
@@ -50,7 +50,7 @@ window.addEventListener('storage',(e)=>{
         return note.id===noteId
         
     })  
-    if (note===undefined){
+    if (!note){
         location.assign('/index.html')
     }
 
