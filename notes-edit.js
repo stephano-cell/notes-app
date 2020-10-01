@@ -1,3 +1,4 @@
+'use strict'
 //get note.id from location hash
 const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
